@@ -3,10 +3,7 @@
     "collect": {
       "staticDistDir": "./dist",
       "url": ["index.html", "a-propos/index.html", "formations/index.html", "contact/index.html"],
-      "numberOfRuns": 2,
-      "settings": {
-        "preset": "mobile"
-      }
+      "numberOfRuns": 2
     },
     "assert": {
       "assertions": {
