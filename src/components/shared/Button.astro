@@ -1,0 +1,58 @@
+---
+/**
+ * Bouton réutilisable — variantes : primary, secondary, ghost, accent.
+ * Rendu en <a> si `href` est fourni, en <button> sinon.
+ */
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "ghost" | "accent";
+  size?: "md" | "lg";
+  class?: string;
+  type?: "button" | "submit";
+  target?: "_blank" | "_self";
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  class: className = "",
+  type = "button",
+  target,
+} = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-colors duration-200 focus-visible:outline-offset-2";
+
+const variants: Record<string, string> = {
+  primary: "bg-al-primary-700 text-white hover:bg-al-primary-900",
+  secondary: "bg-al-surface text-al-primary-900 border border-al-ink-300 hover:border-al-primary-700",
+  ghost: "text-al-primary-900 hover:bg-al-surface",
+  accent: "bg-al-accent-500 text-al-ink-900 hover:bg-al-accent-700 hover:text-white",
+};
+
+const sizes: Record<string, string> = {
+  md: "px-5 py-2.5 text-sm",
+  lg: "px-7 py-3.5 text-base",
+};
+
+const classes = [base, variants[variant], sizes[size], className].join(" ");
+const isExternal = href?.startsWith("http");
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={classes}
+      target={target ?? (isExternal ? "_blank" : undefined)}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes}>
+      <slot />
+    </button>
+  )
+}

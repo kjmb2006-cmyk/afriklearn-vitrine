@@ -1,0 +1,39 @@
+/**
+ * Design tokens — AFRIK'LEARN Consulting
+ * Référence : CLAUDE.md §4.1 — PROPOSITION à valider avec Mme TANOU avant Sprint 1.
+ * Ne pas modifier sans mettre à jour le journal des décisions (CLAUDE.md §14).
+ */
+:root {
+  /* Primaires */
+  --al-primary-900: #0a4d68; /* Bleu profond — confiance */
+  --al-primary-700: #088395; /* Cyan — modernité */
+  --al-primary-500: #0aa5ba;
+
+  /* Accent chaleur africaine */
+  --al-accent-700: #c97b1a;
+  --al-accent-500: #e8a33d; /* Ocre safran */
+  --al-accent-300: #f4c572;
+
+  /* Neutres */
+  --al-ink-900: #0f172a; /* Texte principal */
+  --al-ink-700: #334155;
+  --al-ink-500: #64748b;
+  --al-ink-300: #cbd5e1;
+  --al-ink-100: #e2e8f0;
+  --al-surface: #f8fafc;
+  --al-white: #ffffff;
+
+  /* Sémantiques */
+  --al-success: #16a34a;
+  --al-warning: #f59e0b;
+  --al-error: #dc2626;
+
+  /* Typographie */
+  --al-font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --al-font-body: "Inter", system-ui, sans-serif;
+
+  /* Layout */
+  --al-container-max: 1280px;
+  --al-radius: 0.75rem; /* 12px */
+  --al-radius-lg: 1rem; /* 16px */
+}

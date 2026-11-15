@@ -1,0 +1,104 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/sections/Hero.astro";
+import ExpertiseGrid from "@components/sections/ExpertiseGrid.astro";
+import FormationCard from "@components/sections/FormationCard.astro";
+import PillarsGrid from "@components/sections/PillarsGrid.astro";
+import CTASection from "@components/sections/CTASection.astro";
+import Container from "@components/layout/Container.astro";
+import SectionHeading from "@components/shared/SectionHeading.astro";
+import { organizationJsonLd } from "@lib/seo";
+
+const academyUrl = "https://academy.afriklearn-consulting.com";
+
+// {{PLACEHOLDER}} — contenu réel à fournir par le client (voir docs/dor-sprint-1.md)
+const expertiseItems = [
+  {
+    title: "Santé publique & systèmes d'information",
+    description:
+      "{{PLACEHOLDER}} Surveillance épidémiologique, économie de la santé, systèmes d'information sanitaire (DHIS2, KoboToolbox).",
+  },
+  {
+    title: "Gestion de projet & PMO",
+    description:
+      "{{PLACEHOLDER}} Certifications PMI/PMP, mise en place de PMO, pilotage de programmes multi-pays.",
+  },
+  {
+    title: "Data & Digital Learning",
+    description:
+      "{{PLACEHOLDER}} Analyse de données, Power BI, plateformes de formation à distance.",
+  },
+];
+
+const featuredFormations = [
+  {
+    title: "{{PLACEHOLDER_FORMATION_1}}",
+    pole: "Gestion de projet",
+    duration: "{{PLACEHOLDER}}",
+    format: "Hybride" as const,
+  },
+  {
+    title: "{{PLACEHOLDER_FORMATION_2}}",
+    pole: "Santé publique",
+    duration: "{{PLACEHOLDER}}",
+    format: "Présentiel" as const,
+  },
+  {
+    title: "{{PLACEHOLDER_FORMATION_3}}",
+    pole: "Data & Digital",
+    duration: "{{PLACEHOLDER}}",
+    format: "Distanciel" as const,
+  },
+];
+
+const pillars = [
+  { title: "Expertise terrain", description: "{{PLACEHOLDER}} Des formateurs issus du terrain, pas seulement de la théorie." },
+  { title: "Approche panafricaine", description: "{{PLACEHOLDER}} Une compréhension fine des réalités institutionnelles africaines." },
+  { title: "Certifications reconnues", description: "{{PLACEHOLDER}} PMI, OMS et partenaires académiques." },
+  { title: "Accompagnement post-formation", description: "{{PLACEHOLDER}} Un suivi qui ne s'arrête pas à la remise du certificat." },
+];
+---
+
+<BaseLayout
+  title="Bâtir les compétences qui transforment l'Afrique"
+  description="AFRIK'LEARN Consulting — cabinet de formation professionnelle et conseil stratégique en Afrique francophone. Santé publique, gestion de projet, data & digital learning."
+  path="/"
+  jsonLd={organizationJsonLd()}
+>
+  <Hero
+    title="Bâtir les compétences qui transforment l'Afrique."
+    subtitle="{{PLACEHOLDER}} AFRIK'LEARN Consulting accompagne entreprises, institutions et organisations internationales dans le renforcement durable de leurs compétences."
+    primaryCta={{ label: "Nos formations", href: "/formations" }}
+    secondaryCta={{ label: "Demander un devis", href: "/contact" }}
+  />
+
+  <ExpertiseGrid heading="Nos pôles d'expertise" items={expertiseItems} />
+
+  <section class="py-16 md:py-24">
+    <Container as="div">
+      <SectionHeading
+        title="Formations phares"
+        description="{{PLACEHOLDER}} Un aperçu de notre catalogue — l'inscription se fait sur notre plateforme Academy."
+      />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {featuredFormations.map((formation) => (
+          <FormationCard
+            title={formation.title}
+            pole={formation.pole}
+            duration={formation.duration}
+            format={formation.format}
+            academyUrl={academyUrl}
+          />
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <PillarsGrid heading="Pourquoi AFRIK'LEARN" pillars={pillars} />
+
+  <CTASection
+    title="Discutons de votre projet"
+    description="{{PLACEHOLDER}} Formation sur mesure, conseil stratégique ou partenariat institutionnel — parlons-en."
+    cta={{ label: "Nous contacter", href: "/contact" }}
+  />
+</BaseLayout>

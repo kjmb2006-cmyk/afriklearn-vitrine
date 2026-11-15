@@ -1,0 +1,21 @@
+{
+  "name": "afriklearn-vitrine-contact-service",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Micro-service Express isolé pour le formulaire de contact de la vitrine AFRIK'LEARN. Tourne sous PM2 sur le VPS, derrière Nginx (voir docs/deployment.md).",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemailer": "^6.9.16",
+    "zod": "^3.24.1",
+    "dotenv": "^16.4.7"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

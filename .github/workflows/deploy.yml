@@ -1,0 +1,55 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    needs: []
+    # Ce job ne s'exécute qu'après le succès de CI sur main (voir branch protection,
+    # ou dupliquer les étapes build de ci.yml ici si on préfère l'autonomie des workflows).
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Deploy via rsync over SSH
+        uses: easingthemes/ssh-deploy@v5
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.VPS_DEPLOY_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.VPS_HOST }}
+          REMOTE_USER: ${{ secrets.VPS_DEPLOY_USER }}
+          SOURCE: "dist/"
+          TARGET: "/var/www/afriklearn-vitrine/"
+          ARGS: "-rlgoDzvc --delete"
+
+      - name: Reload Nginx
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_DEPLOY_USER }}
+          key: ${{ secrets.VPS_DEPLOY_SSH_KEY }}
+          script: sudo systemctl reload nginx
+
+  # Secrets requis (GitHub → Settings → Secrets and variables → Actions) :
+  #   VPS_HOST             — IP ou domaine du VPS
+  #   VPS_DEPLOY_USER       — utilisateur dédié au déploiement (droits limités, voir docs/deployment.md)
+  #   VPS_DEPLOY_SSH_KEY    — clé privée SSH correspondante

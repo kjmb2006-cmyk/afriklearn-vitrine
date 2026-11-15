@@ -1,0 +1,62 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/layout/Container.astro";
+import SectionHeading from "@components/shared/SectionHeading.astro";
+import FormationCard from "@components/sections/FormationCard.astro";
+import CTASection from "@components/sections/CTASection.astro";
+import { breadcrumbJsonLd } from "@lib/seo";
+
+const academyUrl = "https://academy.afriklearn-consulting.com";
+
+/**
+ * {{PLACEHOLDER}} — Liste statique pour le Sprint 1 (pas de filtre dynamique,
+ * voir CLAUDE.md §5.2 Page 3). Le client doit fournir la liste définitive
+ * (6 à 12 formations) avant mise en production — voir docs/dor-sprint-1.md.
+ * À partir du Sprint 2, ces données migrent vers src/content/formations/ (Content Collections).
+ */
+const formations = [
+  { title: "{{PLACEHOLDER_FORMATION_1}}", pole: "Gestion de projet", duration: "{{PLACEHOLDER}}", format: "Hybride" as const },
+  { title: "{{PLACEHOLDER_FORMATION_2}}", pole: "Santé publique", duration: "{{PLACEHOLDER}}", format: "Présentiel" as const },
+  { title: "{{PLACEHOLDER_FORMATION_3}}", pole: "Data & Digital", duration: "{{PLACEHOLDER}}", format: "Distanciel" as const },
+  { title: "{{PLACEHOLDER_FORMATION_4}}", pole: "Gestion de projet", duration: "{{PLACEHOLDER}}", format: "Hybride" as const },
+  { title: "{{PLACEHOLDER_FORMATION_5}}", pole: "Santé publique", duration: "{{PLACEHOLDER}}", format: "Présentiel" as const },
+  { title: "{{PLACEHOLDER_FORMATION_6}}", pole: "Data & Digital", duration: "{{PLACEHOLDER}}", format: "Distanciel" as const },
+];
+---
+
+<BaseLayout
+  title="Nos formations"
+  description="Découvrez le catalogue de formations AFRIK'LEARN Consulting : gestion de projet, santé publique, data & digital learning."
+  path="/formations"
+  jsonLd={breadcrumbJsonLd([
+    { name: "Accueil", path: "/" },
+    { name: "Formations", path: "/formations" },
+  ])}
+>
+  <section class="py-16 md:py-24">
+    <Container as="div">
+      <SectionHeading
+        title="Nos formations"
+        description="{{PLACEHOLDER}} L'inscription et le suivi pédagogique se font sur notre plateforme AFRIK'LEARN Academy."
+      />
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {formations.map((formation) => (
+          <FormationCard
+            title={formation.title}
+            pole={formation.pole}
+            duration={formation.duration}
+            format={formation.format}
+            academyUrl={academyUrl}
+          />
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <CTASection
+    title="Vous ne trouvez pas votre besoin ?"
+    description="Nous concevons aussi des formations sur mesure pour les équipes et les institutions."
+    cta={{ label: "Parlons de votre besoin", href: "/contact" }}
+  />
+</BaseLayout>

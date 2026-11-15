@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://afriklearn-consulting.com/sitemap-index.xml

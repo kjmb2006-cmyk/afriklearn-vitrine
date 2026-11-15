@@ -1,0 +1,26 @@
+# Dépendances
+node_modules/
+
+# Build Astro
+dist/
+.astro/
+
+# Variables d'environnement — JAMAIS commiter les vraies valeurs
+.env
+.env.production
+.env.local
+!.env.example
+
+# Éditeurs / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Lighthouse CI
+.lighthouseci/
+
+# Caches
+.cache/

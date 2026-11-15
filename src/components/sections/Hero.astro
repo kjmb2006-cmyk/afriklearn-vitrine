@@ -1,0 +1,42 @@
+---
+import Container from "@components/layout/Container.astro";
+import Button from "@components/shared/Button.astro";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+}
+
+const { title, subtitle, primaryCta, secondaryCta } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-al-surface py-16 md:py-24">
+  <Container as="div" class="grid items-center gap-12 md:grid-cols-2">
+    <div>
+      <h1 class="text-al-ink-900">{title}</h1>
+      <p class="mt-6 text-lg text-al-ink-500">{subtitle}</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button href={primaryCta.href} variant="primary" size="lg">
+          {primaryCta.label}
+        </Button>
+        <Button href={secondaryCta.href} variant="secondary" size="lg">
+          {secondaryCta.label}
+        </Button>
+      </div>
+    </div>
+
+    <div class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-al-primary-900/10">
+      <!--
+        {{PLACEHOLDER_IMAGE_HERO}}
+        Remplacer par une photographie authentique (professionnels africains en contexte réel)
+        via <Image /> d'Astro — voir CLAUDE.md §4.4 et §11.3.
+        Sources suggérées : Nappy.co, Iwaria, ou shooting dédié.
+      -->
+      <div class="flex h-full items-center justify-center text-sm text-al-ink-500">
+        Visuel hero — {`{{PLACEHOLDER_IMAGE_HERO}}`}
+      </div>
+    </div>
+  </Container>
+</section>

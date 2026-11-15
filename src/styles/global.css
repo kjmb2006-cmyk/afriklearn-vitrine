@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@theme {
+  --color-al-primary-900: var(--al-primary-900);
+  --color-al-primary-700: var(--al-primary-700);
+  --color-al-primary-500: var(--al-primary-500);
+  --color-al-accent-700: var(--al-accent-700);
+  --color-al-accent-500: var(--al-accent-500);
+  --color-al-accent-300: var(--al-accent-300);
+  --color-al-ink-900: var(--al-ink-900);
+  --color-al-ink-700: var(--al-ink-700);
+  --color-al-ink-500: var(--al-ink-500);
+  --color-al-ink-300: var(--al-ink-300);
+  --color-al-ink-100: var(--al-ink-100);
+  --color-al-surface: var(--al-surface);
+  --color-al-success: var(--al-success);
+  --color-al-warning: var(--al-warning);
+  --color-al-error: var(--al-error);
+
+  --font-display: var(--al-font-display);
+  --font-body: var(--al-font-body);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--al-font-body);
+    color: var(--al-ink-900);
+    background-color: var(--al-white);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--al-font-display);
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-size: clamp(1.375rem, 3vw, 1.875rem);
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+
+  /* Accessibilité : focus visible systématique — CLAUDE.md §4.4 */
+  :focus-visible {
+    outline: 3px solid var(--al-accent-500);
+    outline-offset: 2px;
+  }
+}

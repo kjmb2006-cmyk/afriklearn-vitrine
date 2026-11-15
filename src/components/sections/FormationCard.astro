@@ -1,0 +1,34 @@
+---
+import Badge from "@components/shared/Badge.astro";
+import Button from "@components/shared/Button.astro";
+
+interface Props {
+  title: string;
+  pole: string;
+  duration: string;
+  format: "Présentiel" | "Distanciel" | "Hybride";
+  academyUrl: string;
+}
+
+const { title, pole, duration, format, academyUrl } = Astro.props;
+---
+
+<div class="flex flex-col rounded-2xl border border-al-ink-100 p-6">
+  <Badge variant="primary">{pole}</Badge>
+  <h3 class="mt-4 text-xl text-al-ink-900">{title}</h3>
+  <dl class="mt-4 space-y-1 text-sm text-al-ink-500">
+    <div class="flex gap-2">
+      <dt class="font-medium">Durée :</dt>
+      <dd>{duration}</dd>
+    </div>
+    <div class="flex gap-2">
+      <dt class="font-medium">Format :</dt>
+      <dd>{format}</dd>
+    </div>
+  </dl>
+  <div class="mt-6">
+    <Button href={academyUrl} variant="accent" class="w-full">
+      S'inscrire sur l'Academy
+    </Button>
+  </div>
+</div>

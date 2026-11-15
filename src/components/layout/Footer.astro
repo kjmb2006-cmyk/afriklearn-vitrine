@@ -1,0 +1,74 @@
+---
+import Container from "./Container.astro";
+
+const currentYear = new Date().getFullYear();
+
+// {{PLACEHOLDER}} — à compléter avec les vraies coordonnées (voir docs/dor-sprint-1.md)
+const contactInfo = {
+  address: "{{PLACEHOLDER_ADRESSE}}, Abidjan, Côte d'Ivoire",
+  email: "contact@afriklearn-consulting.com",
+  phone: "{{PLACEHOLDER_TELEPHONE}}",
+};
+
+const academyUrl = "https://academy.afriklearn-consulting.com";
+const toutEtPlusUrl = "https://tout-et-plus.afriklearn-consulting.com"; // {{PLACEHOLDER_URL}}
+
+const socialLinks = [
+  { label: "LinkedIn", href: "{{PLACEHOLDER_LINKEDIN}}" },
+  { label: "Facebook", href: "{{PLACEHOLDER_FACEBOOK}}" },
+];
+---
+
+<footer class="border-t border-al-ink-100 bg-al-surface">
+  <Container as="div" class="py-12">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div>
+        <p class="font-display text-lg font-bold text-al-primary-900">
+          AFRIK'LEARN <span class="text-al-accent-500">Consulting</span>
+        </p>
+        <p class="mt-3 text-sm text-al-ink-500">
+          Cabinet de formation professionnelle et conseil stratégique, Afrique francophone.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-al-ink-900">Navigation</h3>
+        <ul class="mt-3 space-y-2 text-sm text-al-ink-500">
+          <li><a href="/a-propos" class="hover:text-al-primary-700">À propos</a></li>
+          <li><a href="/formations" class="hover:text-al-primary-700">Formations</a></li>
+          <li><a href="/contact" class="hover:text-al-primary-700">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-al-ink-900">Nos plateformes</h3>
+        <ul class="mt-3 space-y-2 text-sm text-al-ink-500">
+          <li><a href={academyUrl} class="hover:text-al-primary-700" target="_blank" rel="noopener noreferrer">AFRIK'LEARN Academy</a></li>
+          <li><a href={toutEtPlusUrl} class="hover:text-al-primary-700" target="_blank" rel="noopener noreferrer">TOUT & PLUS</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-al-ink-900">Contact</h3>
+        <ul class="mt-3 space-y-2 text-sm text-al-ink-500">
+          <li>{contactInfo.address}</li>
+          <li><a href={`mailto:${contactInfo.email}`} class="hover:text-al-primary-700">{contactInfo.email}</a></li>
+          <li>{contactInfo.phone}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-al-ink-100 pt-6 text-xs text-al-ink-500 md:flex-row">
+      <p>&copy; {currentYear} AFRIK'LEARN Consulting SARL. Tous droits réservés.</p>
+      <div class="flex items-center gap-4">
+        <a href="/mentions-legales" class="hover:text-al-primary-700">Mentions légales</a>
+        <a href="/politique-confidentialite" class="hover:text-al-primary-700">Confidentialité</a>
+        {socialLinks.map((link) => (
+          <a href={link.href} class="hover:text-al-primary-700" target="_blank" rel="noopener noreferrer">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </Container>
+</footer>

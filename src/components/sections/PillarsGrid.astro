@@ -1,0 +1,31 @@
+---
+import Container from "@components/layout/Container.astro";
+import SectionHeading from "@components/shared/SectionHeading.astro";
+
+interface Pillar {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  heading: string;
+  pillars: Pillar[];
+}
+
+const { heading, pillars } = Astro.props;
+---
+
+<section class="bg-al-surface py-16 md:py-24">
+  <Container as="div">
+    <SectionHeading title={heading} />
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {pillars.map((pillar) => (
+        <div class="text-center">
+          <h3 class="text-lg text-al-ink-900">{pillar.title}</h3>
+          <p class="mt-2 text-sm text-al-ink-500">{pillar.description}</p>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

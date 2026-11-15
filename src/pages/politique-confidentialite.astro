@@ -1,0 +1,57 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/layout/Container.astro";
+---
+
+<BaseLayout
+  title="Politique de confidentialité"
+  description="Politique de confidentialité d'AFRIK'LEARN Consulting SARL."
+  path="/politique-confidentialite"
+>
+  <section class="py-16 md:py-24">
+    <Container as="div" class="max-w-3xl prose">
+      <h1>Politique de confidentialité</h1>
+
+      <p>
+        {`{{PLACEHOLDER}}`} — Référence : CLAUDE.md §12.2. Ce contenu doit être revu par un
+        conseil juridique avant publication, en particulier au regard de la déclaration
+        ARTCI éventuellement requise pour le traitement du formulaire de contact.
+      </p>
+
+      <h2>Données collectées</h2>
+      <p>
+        Via le formulaire de contact : nom, email, organisation (facultatif), téléphone
+        (facultatif), sujet et message.
+      </p>
+
+      <h2>Finalité</h2>
+      <p>Répondre aux demandes de contact (formation, conseil, partenariat).</p>
+
+      <h2>Base légale et conservation</h2>
+      <p>
+        Intérêt légitime à répondre à une demande entrante. Durée de conservation :
+        3 ans maximum après le dernier contact.
+      </p>
+
+      <h2>Destinataires</h2>
+      <p>
+        Les données sont transmises uniquement à l'équipe AFRIK'LEARN Consulting via un
+        service d'envoi d'email opéré sur notre propre infrastructure (aucune transmission
+        à un tiers SaaS).
+      </p>
+
+      <h2>Analytics</h2>
+      <p>
+        Ce site utilise Plausible Analytics, hébergé par nos soins, qui ne dépose aucun
+        cookie et ne collecte aucune donnée personnelle identifiable.
+      </p>
+
+      <h2>Vos droits</h2>
+      <p>
+        Conformément à la loi ivoirienne n° 2013-450 et, le cas échéant, au RGPD, vous
+        disposez d'un droit d'accès, de rectification et de suppression de vos données.
+        Pour l'exercer, contactez-nous à {`{{PLACEHOLDER_EMAIL_DPO}}`}.
+      </p>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,56 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/layout/Container.astro";
+import SectionHeading from "@components/shared/SectionHeading.astro";
+import ContactForm from "@components/forms/ContactForm.tsx";
+import { breadcrumbJsonLd } from "@lib/seo";
+
+// {{PLACEHOLDER}} — coordonnées réelles à fournir (voir docs/dor-sprint-1.md)
+const contactDetails = [
+  { label: "Adresse", value: "{{PLACEHOLDER_ADRESSE}}, Abidjan, Côte d'Ivoire" },
+  { label: "Téléphone", value: "{{PLACEHOLDER_TELEPHONE}}" },
+  { label: "Email", value: "contact@afriklearn-consulting.com" },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contactez AFRIK'LEARN Consulting pour vos besoins en formation professionnelle et conseil stratégique."
+  path="/contact"
+  jsonLd={breadcrumbJsonLd([
+    { name: "Accueil", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ])}
+>
+  <section class="py-16 md:py-24">
+    <Container as="div" class="grid gap-12 lg:grid-cols-2">
+      <div>
+        <SectionHeading title="Parlons de votre projet" align="left" />
+        <p class="mt-6 text-al-ink-500">
+          {`{{PLACEHOLDER}}`} Formation, conseil ou partenariat — notre équipe vous répond
+          dans les plus brefs délais.
+        </p>
+
+        <dl class="mt-10 space-y-4">
+          {contactDetails.map((detail) => (
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wide text-al-ink-500">
+                {detail.label}
+              </dt>
+              <dd class="mt-1 text-al-ink-900">{detail.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <!--
+          {{PLACEHOLDER_CARTE}} — intégrer la carte une fois l'adresse confirmée.
+          Préférer un embed sans cookie, ou une capture statique + lien "Ouvrir dans Google Maps".
+        -->
+      </div>
+
+      <div class="rounded-2xl border border-al-ink-100 p-6 md:p-8">
+        <ContactForm client:visible />
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
