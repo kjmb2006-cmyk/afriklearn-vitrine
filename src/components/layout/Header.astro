@@ -17,10 +17,11 @@ const currentPath = new URL(Astro.request.url).pathname;
 
 <header class="sticky top-0 z-50 border-b border-al-ink-100 bg-white/90 backdrop-blur">
   <Container as="div" class="flex h-16 items-center justify-between">
-    <a href="/" class="flex items-center gap-2 font-display text-lg font-bold text-al-primary-900">
-      <!-- {{PLACEHOLDER_LOGO}} — remplacer par le logo SVG officiel -->
-      <span>AFRIK'LEARN</span>
-      <span class="text-al-accent-500">Consulting</span>
+    <a href="/" class="flex items-center gap-3" aria-label="AFRIK'LEARN Consulting — Accueil">
+      <img src="/images/logo.png" alt="" width="40" height="40" class="h-10 w-10" />
+      <span class="hidden font-display text-lg font-bold text-al-primary-900 sm:inline">
+        AFRIK'LEARN <span class="text-al-accent-500">Consulting</span>
+      </span>
     </a>
 
     <nav class="hidden items-center gap-8 md:flex" aria-label="Navigation principale">

@@ -10,10 +10,17 @@ développement — mais tout bloque la **mise en production**.
 
 ## Identité
 
-- [ ] Logo SVG officiel (versions horizontale, verticale, monochrome, favicon)
-  → remplace `public/favicon.svg` et le texte dans `src/components/layout/Header.astro`
-- [ ] Palette couleur validée (proposition dans `docs/design-system.md` §Palette)
-  → ou confirmation que la proposition convient telle quelle
+- [x] Logo reçu et intégré (`src/assets/brand/logo-transparent.png`, détouré, fond navy retiré)
+  → favicons, apple-touch-icon, header, footer et image Open Graph générés automatiquement
+  → **reste à faire** : le logo reçu est un JPEG/PNG raster basse résolution (418×388), pas un
+    vecteur. Une version SVG ou un fichier source haute résolution (Illustrator/Figma) serait
+    préférable pour les usages grand format (bannières, supports imprimés). À demander si
+    disponible — sinon la version actuelle reste utilisable telle quelle pour le web.
+- [ ] Déclinaison monochrome du logo (pour usages sur fond coloré ou impression N&B)
+- [ ] Palette couleur validée (proposition dans `docs/design-system.md` §Palette) — note : le
+  bleu du logo reçu (`rgb(19,22,77)`, très foncé) diffère légèrement du `--al-primary-900`
+  actuel (`#0A4D68`). À arbitrer : aligner les tokens sur le bleu du logo, ou garder les deux
+  tons (logo vs UI) ?
 
 ## Contenu
 
