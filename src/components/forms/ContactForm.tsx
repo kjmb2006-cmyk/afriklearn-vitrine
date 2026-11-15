@@ -188,7 +188,8 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={submitState === "submitting"}
-        className="inline-flex items-center justify-center rounded-xl bg-al-primary-700 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-al-primary-900 disabled:opacity-50"
+        // primary-900 en base : primary-700 seul échoue le contraste AA en petit texte (4.47:1 < 4.5:1) — même correctif que Button.astro
+        className="inline-flex items-center justify-center rounded-xl bg-al-primary-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-al-primary-700 disabled:opacity-50"
       >
         {submitState === "submitting" ? "Envoi en cours..." : "Envoyer le message"}
       </button>
