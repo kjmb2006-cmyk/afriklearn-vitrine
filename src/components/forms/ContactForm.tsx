@@ -5,11 +5,11 @@ import { z } from "zod";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Le nom doit comporter au moins 2 caractères."),
-  email: z.string().email("Adresse email invalide."),
+  email: z.email("Adresse email invalide."),
   organization: z.string().optional(),
   phone: z.string().optional(),
   subject: z.enum(["formation", "conseil", "partenariat", "autre"], {
-    required_error: "Veuillez choisir un sujet.",
+    error: "Veuillez choisir un sujet.",
   }),
   message: z.string().min(10, "Le message doit comporter au moins 10 caractères."),
   // Honeypot anti-spam — champ caché, doit rester vide

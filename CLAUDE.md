@@ -66,7 +66,7 @@ Site **vitrine corporate** destiné à :
 
 | Couche | Choix | Version | Motif |
 |--------|-------|---------|-------|
-| Framework | **Astro** | 5.x | Zéro JS par défaut, SSG pur, parfait pour vitrine, excellent SEO |
+| Framework | **Astro** | 7.x (voir §15) | Zéro JS par défaut, SSG pur, parfait pour vitrine, excellent SEO |
 | Styling | **Tailwind CSS** | 4.x | Productivité, cohérence design system |
 | Composants îlots | **React** (via `@astrojs/react`) | 19.x | Uniquement pour formulaires et carrousels |
 | Formulaires | React Hook Form + Zod | dernières | Validation robuste |
@@ -496,6 +496,7 @@ Mentions légales doivent inclure :
 | Date | Dérogation | Motif | Validé par |
 |------|-----------|-------|------------|
 | 2026-11-15 | Formulaire de contact : pas de route `src/pages/api/contact.ts` dans Astro. Remplacé par un micro-service Express séparé (`server/contact-service/`), tournant sous PM2 sur le VPS. | `output: "static"` (décision §3.1/§3.2) ne peut pas exécuter de route serveur sans adaptateur Node — ce qui aurait annulé le choix "0 runtime Node en prod pour la vitrine". Le micro-service isole le seul besoin dynamique, sur le modèle déjà en place pour l'academy (Node/Express/PM2). Le contrat fonctionnel du formulaire (§5.2 Page 4 : Zod, honeypot, rate limiting, SMTP) est intégralement respecté, seule l'implémentation technique change. | Scaffolding initial — à confirmer par le Directeur Associé |
+| 2026-11-15 | Astro figé en **7.x** au lieu de 5.x initialement spécifié en §3.1. Zod figé en **4.x** au lieu de 3.x. Nodemailer figé en **10.x** au lieu de 6.x (côté `contact-service`). | GitHub Dependabot a signalé 54 vulnérabilités sur le commit initial (2 critiques dont une RCE Astro via optimisation d'image AVIF, 15 élevées dont une SSRF et une XSS Astro, une DoS Zod, 22 CVE Nodemailer dont injections SMTP). Les correctifs n'existaient qu'à partir d'Astro ≥7.2.8, Zod ≥4.6.6 et Nodemailer ≥10.x — pas de patch mineur disponible. Mise à jour effectuée immédiatement (Sprint 0, aucun code de production encore livré) plutôt que de porter ces vulnérabilités jusqu'au Sprint 1. Résultat après mise à jour : 1 vulnérabilité low résiduelle (bug esbuild dev-server, Windows uniquement, non exploitable sur notre pipeline Linux CI/VPS), non corrigée car sans impact réel. | Scaffolding initial — à confirmer par le Directeur Associé |
 
 ---
 

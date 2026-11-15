@@ -24,7 +24,7 @@ app.use(express.json({ limit: "20kb" }));
 // --- Validation ---
 const contactSchema = z.object({
   name: z.string().min(2).max(200),
-  email: z.string().email(),
+  email: z.email(),
   organization: z.string().max(200).optional(),
   phone: z.string().max(50).optional(),
   subject: z.enum(["formation", "conseil", "partenariat", "autre"]),
