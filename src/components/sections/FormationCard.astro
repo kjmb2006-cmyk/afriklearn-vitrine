@@ -15,7 +15,9 @@ const { title, pole, duration, format, academyUrl } = Astro.props;
 
 <div class="flex flex-col rounded-2xl border border-al-ink-100 p-6">
   <Badge variant="primary">{pole}</Badge>
-  <h3 class="mt-4 text-xl text-al-ink-900">{title}</h3>
+  {/* break-words : les placeholders {{PLACEHOLDER_...}} sont des chaînes sans espace
+      et débordaient de la carte à 768px (md:grid-cols-3), chevauchant la carte voisine. */}
+  <h3 class="mt-4 text-xl text-al-ink-900 break-words">{title}</h3>
   <dl class="mt-4 space-y-1 text-sm text-al-ink-500">
     <div class="flex gap-2">
       <dt class="font-medium">Durée :</dt>
