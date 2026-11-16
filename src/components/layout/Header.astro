@@ -45,17 +45,129 @@ const currentPath = new URL(Astro.request.url).pathname;
       </Button>
     </div>
 
-    <!-- Menu mobile : à compléter en Sprint 1 avec un drawer accessible (focus trap, Escape) -->
     <button
       type="button"
       class="inline-flex items-center justify-center rounded-lg p-2 text-al-ink-900 md:hidden"
       aria-label="Ouvrir le menu"
       aria-expanded="false"
+      aria-controls="mobile-menu-drawer"
       data-mobile-menu-toggle
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <svg data-icon-open xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+      </svg>
+      <svg data-icon-close xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="hidden">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
   </Container>
+
+  <!-- Drawer mobile : masqué par défaut, ouvert/fermé via data-mobile-menu-toggle (script ci-dessous) -->
+  <div
+    id="mobile-menu-drawer"
+    class="hidden border-t border-al-ink-100 bg-white md:hidden"
+    data-mobile-menu-drawer
+  >
+    <Container as="div" class="flex flex-col gap-1 py-4">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-al-surface",
+            currentPath === item.href ? "text-al-primary-900" : "text-al-ink-700",
+          ]}
+          aria-current={currentPath === item.href ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+      <div class="mt-2 px-3">
+        <Button href={academyUrl} variant="secondary" size="md" class="w-full">
+          Accéder à l'Academy
+        </Button>
+      </div>
+    </Container>
+  </div>
 </header>
+
+<script>
+  // Menu mobile — vanilla JS, pas de framework (budget JS, CLAUDE.md §11.2).
+  // Gère : toggle, icône ouverte/fermée, fermeture sur Escape, fermeture au clic sur un lien,
+  // et un focus trap simple tant que le drawer est ouvert.
+  function initMobileMenu() {
+    const toggle = document.querySelector<HTMLButtonElement>("[data-mobile-menu-toggle]");
+    const drawer = document.querySelector<HTMLDivElement>("[data-mobile-menu-drawer]");
+    if (!toggle || !drawer) return;
+
+    const iconOpen = toggle.querySelector("[data-icon-open]");
+    const iconClose = toggle.querySelector("[data-icon-close]");
+
+    function getFocusable(): HTMLElement[] {
+      if (!drawer) return [];
+      return Array.from(
+        drawer.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+      );
+    }
+
+    function open() {
+      if (!drawer) return;
+      drawer.classList.remove("hidden");
+      toggle?.setAttribute("aria-expanded", "true");
+      toggle?.setAttribute("aria-label", "Fermer le menu");
+      iconOpen?.classList.add("hidden");
+      iconClose?.classList.remove("hidden");
+      getFocusable()[0]?.focus();
+    }
+
+    function close(refocusToggle = false) {
+      if (!drawer) return;
+      drawer.classList.add("hidden");
+      toggle?.setAttribute("aria-expanded", "false");
+      toggle?.setAttribute("aria-label", "Ouvrir le menu");
+      iconOpen?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+      if (refocusToggle) toggle?.focus();
+    }
+
+    function isOpen() {
+      return toggle?.getAttribute("aria-expanded") === "true";
+    }
+
+    toggle.addEventListener("click", () => {
+      isOpen() ? close() : open();
+    });
+
+    drawer.addEventListener("click", (event) => {
+      if ((event.target as HTMLElement).tagName === "A") close();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!isOpen()) return;
+
+      if (event.key === "Escape") {
+        close(true);
+        return;
+      }
+
+      // Focus trap minimal : Tab/Shift+Tab boucle dans les éléments du drawer
+      if (event.key === "Tab") {
+        const focusable = getFocusable();
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
+
+  initMobileMenu();
+  // Astro View Transitions (non activées pour l'instant) réexécuteraient ce script
+  // automatiquement au besoin — pas de gestion spéciale requise tant qu'elles sont off.
+</script>

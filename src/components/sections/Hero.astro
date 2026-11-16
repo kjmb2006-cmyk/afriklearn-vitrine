@@ -34,7 +34,8 @@ const { title, subtitle, primaryCta, secondaryCta } = Astro.props;
         via <Image /> d'Astro — voir CLAUDE.md §4.4 et §11.3.
         Sources suggérées : Nappy.co, Iwaria, ou shooting dédié.
       -->
-      <div class="flex h-full items-center justify-center text-sm text-al-ink-500">
+      <!-- text-al-ink-700 (pas -500) : -500 échoue le contraste AA sur ce fond clair (3.86:1 < 4.5:1 requis) -->
+      <div class="flex h-full items-center justify-center text-sm text-al-ink-700">
         Visuel hero — {`{{PLACEHOLDER_IMAGE_HERO}}`}
       </div>
     </div>

@@ -25,7 +25,10 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-colors duration-200 focus-visible:outline-offset-2";
 
 const variants: Record<string, string> = {
-  primary: "bg-al-primary-700 text-white hover:bg-al-primary-900",
+  // primary-900 en base (contraste ~9.2:1 sur blanc, AA sans ambiguïté) ;
+  // primary-700 au survol. primary-700 seul échouait de justesse le contraste
+  // AA en petit texte (4.47:1 < 4.5:1 requis) — voir Lighthouse accessibility audit.
+  primary: "bg-al-primary-900 text-white hover:bg-al-primary-700",
   secondary: "bg-al-surface text-al-primary-900 border border-al-ink-300 hover:border-al-primary-700",
   ghost: "text-al-primary-900 hover:bg-al-surface",
   accent: "bg-al-accent-500 text-al-ink-900 hover:bg-al-accent-700 hover:text-white",

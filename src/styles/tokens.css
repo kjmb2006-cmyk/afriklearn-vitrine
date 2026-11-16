@@ -10,7 +10,11 @@
   --al-primary-500: #0aa5ba;
 
   /* Accent chaleur africaine */
-  --al-accent-700: #c97b1a;
+  /* accent-700 foncé à #a6620f (au lieu de #c97b1a proposé initialement) :
+     #c97b1a en texte sur blanc n'atteint que 3.31:1, sous le seuil AA de 4.5:1
+     (voir SectionHeading eyebrow, Badge accent, a-propos rôle fondateurs).
+     #a6620f atteint 4.80:1. Reste à valider avec le reste de la palette (CLAUDE.md §4.1). */
+  --al-accent-700: #a6620f;
   --al-accent-500: #e8a33d; /* Ocre safran */
   --al-accent-300: #f4c572;
 
