@@ -9,44 +9,50 @@ import Container from "@components/layout/Container.astro";
 import SectionHeading from "@components/shared/SectionHeading.astro";
 import { organizationJsonLd } from "@lib/seo";
 
-const academyUrl = "https://academy.afriklearn-consulting.com";
+const academyUrl = "https://academy.afriklearn-consulting.com/formations.html";
 
-// {{PLACEHOLDER}} — contenu réel à fournir par le client (voir docs/dor-sprint-1.md)
+// Pôles "Santé publique" et "Data & Digital Learning" : contenu confirmé via
+// academy.afriklearn-consulting.com (fetched 18/11/2026). Le 3e pôle
+// "Gestion de projet & PMO" (sans équivalent confirmé sur l'Academy) a été
+// remplacé par "Phyto Santé" sur décision du client (18/11/2026) — contenu
+// fourni directement par le client, pas de source Academy pour celui-ci.
 const expertiseItems = [
   {
     title: "Santé publique & systèmes d'information",
     description:
-      "{{PLACEHOLDER}} Surveillance épidémiologique, économie de la santé, systèmes d'information sanitaire (DHIS2, KoboToolbox).",
+      "Vaccinologie appliquée et surveillance épidémiologique, santé communautaire (SMNI, WASH, nutrition), évaluation des systèmes de santé et économie de la santé — pour ministères, ONG et bailleurs.",
   },
   {
-    title: "Gestion de projet & PMO",
+    title: "Phyto Santé",
     description:
-      "{{PLACEHOLDER}} Certifications PMI/PMP, mise en place de PMO, pilotage de programmes multi-pays.",
+      "L'utilisation des plantes médicinales et des extraits végétaux pour soigner, soulager et prévenir les troubles de la santé.",
   },
   {
     title: "Data & Digital Learning",
     description:
-      "{{PLACEHOLDER}} Analyse de données, Power BI, plateformes de formation à distance.",
+      "Digitalisation et professionnalisation des dispositifs de formation : audit pédagogique, conception de modules e-learning (SCORM), déploiement de plateformes LMS Moodle et formation de formateurs.",
   },
 ];
 
+// 3 formations représentatives parmi les 14 réellement publiées sur l'Academy
+// (liste complète dans src/pages/formations.astro).
 const featuredFormations = [
   {
-    title: "{{PLACEHOLDER_FORMATION_1}}",
-    pole: "Gestion de projet",
-    duration: "{{PLACEHOLDER}}",
+    title: "Formation Formateurs — Niveau Basique (5 jours)",
+    pole: "Digital Learning & Conseil",
+    duration: "5 jours",
     format: "Hybride" as const,
   },
   {
-    title: "{{PLACEHOLDER_FORMATION_2}}",
-    pole: "Santé publique",
-    duration: "{{PLACEHOLDER}}",
+    title: "Vaccinologie appliquée & surveillance épidémiologique",
+    pole: "Santé Publique",
+    duration: "5 jours",
     format: "Présentiel" as const,
   },
   {
-    title: "{{PLACEHOLDER_FORMATION_3}}",
-    pole: "Data & Digital",
-    duration: "{{PLACEHOLDER}}",
+    title: "Production Module E-Learning Standard",
+    pole: "Digital Learning & Conseil",
+    duration: "Sur mesure",
     format: "Distanciel" as const,
   },
 ];
@@ -67,7 +73,7 @@ const pillars = [
 >
   <Hero
     title="Bâtir les compétences qui transforment l'Afrique."
-    subtitle="{{PLACEHOLDER}} AFRIK'LEARN Consulting accompagne entreprises, institutions et organisations internationales dans le renforcement durable de leurs compétences."
+    subtitle="Ingénierie de formation, conseil et expertise en santé publique pour les institutions, ONG et entreprises engagées sur le continent."
     primaryCta={{ label: "Nos formations", href: "/formations" }}
     secondaryCta={{ label: "Demander un devis", href: "/contact" }}
   />
@@ -78,7 +84,7 @@ const pillars = [
     <Container as="div">
       <SectionHeading
         title="Formations phares"
-        description="{{PLACEHOLDER}} Un aperçu de notre catalogue — l'inscription se fait sur notre plateforme Academy."
+        description="Un aperçu de notre catalogue — l'inscription se fait sur notre plateforme Academy."
       />
       <div class="mt-12 grid gap-6 md:grid-cols-3">
         {featuredFormations.map((formation) => (
@@ -98,7 +104,7 @@ const pillars = [
 
   <CTASection
     title="Discutons de votre projet"
-    description="{{PLACEHOLDER}} Formation sur mesure, conseil stratégique ou partenariat institutionnel — parlons-en."
+    description="Formation sur mesure, conseil stratégique ou partenariat institutionnel — parlons-en."
     cta={{ label: "Nous contacter", href: "/contact" }}
   />
 </BaseLayout>
