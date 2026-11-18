@@ -1,19 +1,33 @@
 # Design system — AFRIK'LEARN Consulting
 
-> Statut : **proposition v1, non validée.** À soumettre à Mme TANOU avant le début effectif
-> du Sprint 1. Référence complète : `CLAUDE.md` §4.
+> Statut : **palette validée le 18/11/2026** (décision client — alignement sur le bleu du
+> logo). Reste en proposition pour tout le reste tant que non confirmé. Référence complète :
+> `CLAUDE.md` §4.
 
 ## Palette
 
 | Token | Valeur | Usage |
 |---|---|---|
-| `al-primary-900` | `#0A4D68` | Texte sur fond clair, fonds foncés (footer CTA) |
+| `al-primary-900` | `#13164D` | Bleu marine du logo officiel (validé 18/11/2026). Texte sur fond clair, fonds foncés (footer, CTA) |
 | `al-primary-700` | `#088395` | Boutons primaires, liens actifs |
 | `al-accent-500` | `#E8A33D` | CTA d'accent, badges |
 | `al-accent-700` | `#A6620F` | Texte sur fond blanc (eyebrow, rôles) — foncé depuis `#C97B1A` pour l'AA (voir note ci-dessous) |
 | `al-ink-900` | `#0F172A` | Texte principal |
 | `al-ink-500` | `#64748B` | Texte secondaire |
 | `al-surface` | `#F8FAFC` | Fonds de section alternés |
+
+`al-primary-900` était initialement `#0A4D68` (bleu sarcelle, proposition de palette générique
+non issue du logo). Le logo officiel reçu du client utilise un bleu marine bien plus foncé
+(`#13164D`, échantillonné sur `src/assets/brand/logo-original.jpg`). Décision client du
+18/11/2026 : aligner la palette UI sur ce bleu pour une cohérence logo/interface totale.
+Contraste revérifié après changement : blanc sur `#13164D` = 16.81:1, `al-ink-100` sur
+`#13164D` = 13.63:1 — amélioration nette par rapport à l'ancien token (9.23:1), aucune
+régression AA/AAA sur les usages existants (boutons, CTA, nav).
+
+`al-primary-700` et `al-primary-500` (teintes plus claires, cyan) n'ont volontairement pas été
+retouchés dans cette passe — leur harmonisation avec le nouveau bleu marine (actuellement deux
+teintes de familles chromatiques différentes : navy indigo vs cyan sarcelle) reste un point
+ouvert, à soumettre séparément si une cohérence de teinte plus poussée est souhaitée.
 
 Définis comme variables CSS dans `src/styles/tokens.css`, exposés à Tailwind via `@theme`
 dans `src/styles/global.css` (classes `bg-al-primary-700`, `text-al-ink-500`, etc.).
