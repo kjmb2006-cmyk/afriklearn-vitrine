@@ -12,11 +12,10 @@ import { organizationJsonLd } from "@lib/seo";
 const academyUrl = "https://academy.afriklearn-consulting.com/formations.html";
 
 // Pôles "Santé publique" et "Data & Digital Learning" : contenu confirmé via
-// academy.afriklearn-consulting.com (fetched 18/11/2026). Le pôle "Gestion de
-// projet & PMO" n'a aucun équivalent confirmé sur l'Academy (qui ne compte que
-// 2 pôles réels : Digital Learning & Conseil, Santé Publique) — reste en
-// {{PLACEHOLDER}}, À ARBITRER avec le client : service réel distinct à détailler,
-// ou carte à retirer/fusionner ?
+// academy.afriklearn-consulting.com (fetched 18/11/2026). Le 3e pôle
+// "Gestion de projet & PMO" (sans équivalent confirmé sur l'Academy) a été
+// remplacé par "Phyto Santé" sur décision du client (18/11/2026) — contenu
+// fourni directement par le client, pas de source Academy pour celui-ci.
 const expertiseItems = [
   {
     title: "Santé publique & systèmes d'information",
@@ -24,9 +23,9 @@ const expertiseItems = [
       "Vaccinologie appliquée et surveillance épidémiologique, santé communautaire (SMNI, WASH, nutrition), évaluation des systèmes de santé et économie de la santé — pour ministères, ONG et bailleurs.",
   },
   {
-    title: "Gestion de projet & PMO",
+    title: "Phyto Santé",
     description:
-      "{{PLACEHOLDER}} Certifications PMI/PMP, mise en place de PMO, pilotage de programmes multi-pays.",
+      "L'utilisation des plantes médicinales et des extraits végétaux pour soigner, soulager et prévenir les troubles de la santé.",
   },
   {
     title: "Data & Digital Learning",
