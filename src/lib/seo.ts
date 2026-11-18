@@ -33,8 +33,10 @@ export function organizationJsonLd() {
     url: SITE_URL,
     logo: `${SITE_URL}/images/logo.svg`,
     address: {
+      // Pas d'adresse postale précise confirmée (ni sur CLAUDE.md, ni sur l'Academy
+      // en production) — streetAddress volontairement omis plutôt qu'un placeholder
+      // factice expédié dans le JSON-LD public.
       "@type": "PostalAddress",
-      streetAddress: "{{PLACEHOLDER_ADRESSE}}",
       addressLocality: "Abidjan",
       addressCountry: "CI",
     },
