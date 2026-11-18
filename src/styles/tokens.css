@@ -5,7 +5,12 @@
  */
 :root {
   /* Primaires */
-  --al-primary-900: #0a4d68; /* Bleu profond — confiance */
+  /* al-primary-900 aligné sur le bleu marine exact du logo officiel (#13164D,
+     échantillonné sur src/assets/brand/logo-original.jpg) — décision client du
+     18/11/2026, voir CLAUDE.md §14. Contraste vérifié : blanc sur #13164D =
+     16.81:1, ink-100 sur #13164D = 13.63:1 (bien au-dessus du seuil AA 4.5:1,
+     et même du AAA 7:1) — aucune régression d'accessibilité. */
+  --al-primary-900: #13164d; /* Bleu marine du logo — confiance */
   --al-primary-700: #088395; /* Cyan — modernité */
   --al-primary-500: #0aa5ba;
 
