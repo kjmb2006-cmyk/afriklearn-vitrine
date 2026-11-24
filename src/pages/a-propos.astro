@@ -1,8 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/layout/Container.astro";
 import SectionHeading from "@components/shared/SectionHeading.astro";
 import { breadcrumbJsonLd } from "@lib/seo";
+import tanouPhoto from "@/assets/brand/founders/tanou.jpg";
+import korandjiPhoto from "@/assets/brand/founders/korandji.png";
 
 // Bios et histoire fournies par le client (24/11/2026) — voir docs/questionnaire-bios-cofondateurs.md.
 // Mme TANOU est Directrice Associée et Gérante (statutaire), Dr KORANDJI est Directeur
@@ -13,12 +16,14 @@ const founders = [
     role: "Directrice Associée et Gérante",
     bio: "Ingénieure pédagogique et spécialiste du Digital Learning, avec 7 ans d'expérience en digital learning et en communication digitale. Diplômée en communication et ressources humaines, certifiée en digital learning, gestion de projet digital et communication digitale, elle conçoit des parcours e-learning pour les entreprises et les établissements. Convaincue que l'Afrique mérite des outils de formation d'excellence, elle cofonde AFRIK'LEARN Consulting pour les rendre accessibles à tous.",
     linkedin: "{{PLACEHOLDER_LINKEDIN}}",
+    photo: tanouPhoto,
   },
   {
     name: "Dr Jean-Marc Bertrand KORANDJI",
     role: "Directeur Associé",
     bio: "Médecin, économiste de la santé, certifié Expert en Santé Publique, épidémiologiste et spécialiste de la promotion de la santé, également épidémiologiste de terrain pour la surveillance des maladies évitables par la vaccination (MEV). Face à l'insuffisance de la formation à distance et de la digitalisation de l'offre de formation, il cofonde AFRIK'LEARN Consulting pour aider entreprises et universités à diversifier leur offre grâce à des formules e-learning adaptées à leurs étudiants. Avec le développement de l'intelligence artificielle et l'évolution rapide du monde du travail, le cabinet associe également développement logiciel et applicatif pour faciliter le pilotage et le suivi des activités de formation.",
     linkedin: "www.linkedin.com/in/jean-marc-bertrand-korandji-b4236079",
+    photo: korandjiPhoto,
   },
 ];
 
@@ -64,9 +69,13 @@ const values = [
       <div class="mt-12 grid gap-8 md:grid-cols-2">
         {founders.map((founder) => (
           <div class="rounded-2xl bg-white p-6 text-center">
-            <div class="mx-auto h-24 w-24 rounded-full bg-al-primary-900/10">
-              <!-- {{PLACEHOLDER_PHOTO}} -->
-            </div>
+            <Image
+              src={founder.photo}
+              alt={`Portrait de ${founder.name}`}
+              width={96}
+              height={96}
+              class="mx-auto h-24 w-24 rounded-full bg-al-primary-900/10 object-cover"
+            />
             <h3 class="mt-4 text-lg text-al-ink-900">{founder.name}</h3>
             <p class="text-sm font-medium text-al-accent-700">{founder.role}</p>
             <p class="mt-3 text-sm text-al-ink-500">{founder.bio}</p>
