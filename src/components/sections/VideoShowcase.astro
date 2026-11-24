@@ -1,0 +1,96 @@
+---
+import Container from "@components/layout/Container.astro";
+import SectionHeading from "@components/shared/SectionHeading.astro";
+
+interface VideoItem {
+  title: string;
+  // ID YouTube (11 caractères, ex: "dQw4w9WgXcQ") — absent tant qu'aucune vidéo réelle
+  // n'a été fournie. Jamais d'ID inventé (CLAUDE.md §0.1).
+  youtubeId?: string;
+}
+
+interface Props {
+  heading: string;
+  description?: string;
+  videos: VideoItem[];
+}
+
+const { heading, description, videos } = Astro.props;
+---
+
+<section class="bg-al-surface py-16 md:py-24">
+  <Container as="div">
+    <SectionHeading title={heading} description={description} />
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {videos.map((video) =>
+        video.youtubeId ? (
+          <div
+            class="group relative aspect-video overflow-hidden rounded-2xl bg-al-ink-900"
+            data-video
+            data-youtube-id={video.youtubeId}
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
+              alt={`Miniature de la vidéo : ${video.title}`}
+              class="absolute inset-0 h-full w-full object-cover opacity-80 transition-opacity group-hover:opacity-60"
+              loading="lazy"
+              width="480"
+              height="270"
+            />
+            <button
+              type="button"
+              class="absolute inset-0 flex items-center justify-center"
+              aria-label={`Lire la vidéo : ${video.title}`}
+              data-video-play
+            >
+              <span class="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-al-primary-900 shadow-lg transition-transform group-hover:scale-105">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </span>
+            </button>
+            <p class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm font-medium text-white">
+              {video.title}
+            </p>
+          </div>
+        ) : (
+          <div class="flex aspect-video flex-col items-center justify-center rounded-2xl border-2 border-dashed border-al-ink-300 p-6 text-center">
+            <p class="text-sm font-medium text-al-ink-500">{video.title}</p>
+            <p class="mt-2 text-xs text-al-ink-300">Vidéo à venir</p>
+          </div>
+        )
+      )}
+    </div>
+  </Container>
+</section>
+
+<script>
+  // Facade cliquable : l'iframe YouTube (domaine nocookie) ne charge qu'au clic, jamais au
+  // chargement de la page — budget JS/réseau nul tant que le visiteur n'interagit pas
+  // (CLAUDE.md §11.2), et aucun cookie tiers déposé avant action explicite (CLAUDE.md §12.3).
+  function initVideoFacades() {
+    document.querySelectorAll<HTMLElement>("[data-video]").forEach((el) => {
+      const button = el.querySelector("[data-video-play]");
+      button?.addEventListener(
+        "click",
+        () => {
+          const id = el.dataset.youtubeId;
+          if (!id) return;
+          const iframe = document.createElement("iframe");
+          iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+          iframe.title = "Lecteur vidéo YouTube";
+          iframe.className = "absolute inset-0 h-full w-full";
+          iframe.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+          iframe.allowFullscreen = true;
+          el.innerHTML = "";
+          el.appendChild(iframe);
+        },
+        { once: true }
+      );
+    });
+  }
+
+  initVideoFacades();
+</script>
