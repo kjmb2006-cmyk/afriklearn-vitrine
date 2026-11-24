@@ -488,6 +488,8 @@ Mentions légales doivent inclure :
 | 2026-11-12 | Domaine racine : **afriklearn-consulting.com** à l'apex | Vitrine = porte d'entrée corporate ; academy reste en sous-domaine |
 | 2026-11-12 | Pas de SSO vitrine ↔ academy au MVP | Les deux surfaces restent indépendantes ; un simple lien sortant suffit |
 | 2026-11-12 | Analytics : **Plausible self-hosted** | RGPD natif, pas de bannière cookies, souveraineté |
+| 2026-11-18 | Palette : `al-primary-900` aligné sur `#13164D` (bleu marine du logo officiel) | Cohérence logo/interface ; contraste vérifié (16.81:1), aucune régression AA/AAA par rapport à l'ancien `#0A4D68` |
+| 2026-11-18 | 3ᵉ pôle d'expertise accueil : **Phyto Santé** remplace "Gestion de projet & PMO" | Pas de contenu confirmé pour PMO sur l'Academy (2 pôles réels seulement) ; Phyto Santé est un service réel, contenu fourni par le client |
 
 ---
 

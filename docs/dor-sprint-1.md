@@ -16,11 +16,12 @@ développement — mais tout bloque la **mise en production**.
     vecteur. Une version SVG ou un fichier source haute résolution (Illustrator/Figma) serait
     préférable pour les usages grand format (bannières, supports imprimés). À demander si
     disponible — sinon la version actuelle reste utilisable telle quelle pour le web.
-- [ ] Déclinaison monochrome du logo (pour usages sur fond coloré ou impression N&B)
-- [ ] Palette couleur validée (proposition dans `docs/design-system.md` §Palette) — note : le
-  bleu du logo reçu (`rgb(19,22,77)`, très foncé) diffère légèrement du `--al-primary-900`
-  actuel (`#0A4D68`). À arbitrer : aligner les tokens sur le bleu du logo, ou garder les deux
-  tons (logo vs UI) ?
+- [x] Déclinaison monochrome du logo — générée (`src/assets/brand/logo-monochrome-navy.png` et
+  `logo-monochrome-white.png`), dérivée mécaniquement du logo détouré approuvé (recoloration
+  à plat, alpha conservé). Premier jet technique, pas une nouvelle proposition visuelle.
+- [x] Palette couleur validée — décision client du 18/11/2026 : alignée sur le bleu marine
+  exact du logo (`#13164D`). `--al-primary-900` mis à jour (voir CLAUDE.md §14 et
+  `docs/design-system.md`). Contrastes revérifiés, aucune régression AA/AAA.
 
 ## Contenu
 
