@@ -33,10 +33,10 @@ export function organizationJsonLd() {
     url: SITE_URL,
     logo: `${SITE_URL}/images/logo.svg`,
     address: {
-      // Pas d'adresse postale précise confirmée (ni sur CLAUDE.md, ni sur l'Academy
-      // en production) — streetAddress volontairement omis plutôt qu'un placeholder
-      // factice expédié dans le JSON-LD public.
+      // Adresse précise confirmée via le flyer officiel AFRIK'LEARN Consulting
+      // (Canva, 28/10/2026) : "Situé à Angré Mahou".
       "@type": "PostalAddress",
+      streetAddress: "Angré Mahou",
       addressLocality: "Abidjan",
       addressCountry: "CI",
     },
