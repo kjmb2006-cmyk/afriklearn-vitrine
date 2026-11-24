@@ -5,10 +5,10 @@ import SectionHeading from "@components/shared/SectionHeading.astro";
 import ContactForm from "@components/forms/ContactForm.tsx";
 import { breadcrumbJsonLd } from "@lib/seo";
 
-// {{PLACEHOLDER}} — coordonnées réelles à fournir (voir docs/dor-sprint-1.md)
+// Coordonnées confirmées via academy.afriklearn-consulting.com (18/11/2026).
 const contactDetails = [
-  { label: "Adresse", value: "{{PLACEHOLDER_ADRESSE}}, Abidjan, Côte d'Ivoire" },
-  { label: "Téléphone", value: "{{PLACEHOLDER_TELEPHONE}}" },
+  { label: "Adresse", value: "Abidjan, Côte d'Ivoire" },
+  { label: "Téléphone", value: "+225 27 24 45 86 99" },
   { label: "Email", value: "contact@afriklearn-consulting.com" },
 ];
 ---
@@ -27,7 +27,7 @@ const contactDetails = [
       <div>
         <SectionHeading title="Parlons de votre projet" align="left" />
         <p class="mt-6 text-al-ink-500">
-          {`{{PLACEHOLDER}}`} Formation, conseil ou partenariat — notre équipe vous répond
+          Formation, conseil ou partenariat — notre équipe vous répond
           dans les plus brefs délais.
         </p>
 

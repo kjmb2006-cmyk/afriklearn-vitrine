@@ -6,21 +6,31 @@ import FormationCard from "@components/sections/FormationCard.astro";
 import CTASection from "@components/sections/CTASection.astro";
 import { breadcrumbJsonLd } from "@lib/seo";
 
-const academyUrl = "https://academy.afriklearn-consulting.com";
+const academyUrl = "https://academy.afriklearn-consulting.com/formations.html";
 
 /**
- * {{PLACEHOLDER}} — Liste statique pour le Sprint 1 (pas de filtre dynamique,
- * voir CLAUDE.md §5.2 Page 3). Le client doit fournir la liste définitive
- * (6 à 12 formations) avant mise en production — voir docs/dor-sprint-1.md.
+ * Liste des 14 formations réellement publiées sur l'Academy, récupérée via son
+ * API live (academy.afriklearn-consulting.com/api/formations) le 18/11/2026.
+ * Dépasse légèrement la fourchette "6 à 12" de CLAUDE.md §5.2 : conservé en
+ * totalité car c'est l'inventaire réel et complet, pas une invention — à
+ * arbitrer avec le client si une sélection plus courte est préférée.
  * À partir du Sprint 2, ces données migrent vers src/content/formations/ (Content Collections).
  */
 const formations = [
-  { title: "{{PLACEHOLDER_FORMATION_1}}", pole: "Gestion de projet", duration: "{{PLACEHOLDER}}", format: "Hybride" as const },
-  { title: "{{PLACEHOLDER_FORMATION_2}}", pole: "Santé publique", duration: "{{PLACEHOLDER}}", format: "Présentiel" as const },
-  { title: "{{PLACEHOLDER_FORMATION_3}}", pole: "Data & Digital", duration: "{{PLACEHOLDER}}", format: "Distanciel" as const },
-  { title: "{{PLACEHOLDER_FORMATION_4}}", pole: "Gestion de projet", duration: "{{PLACEHOLDER}}", format: "Hybride" as const },
-  { title: "{{PLACEHOLDER_FORMATION_5}}", pole: "Santé publique", duration: "{{PLACEHOLDER}}", format: "Présentiel" as const },
-  { title: "{{PLACEHOLDER_FORMATION_6}}", pole: "Data & Digital", duration: "{{PLACEHOLDER}}", format: "Distanciel" as const },
+  { title: "Digital Enquirer — Audit de maturité digitale", pole: "Digital Learning & Conseil", duration: "Sur mesure", format: "Hybride" as const },
+  { title: "Formation Formateurs — Niveau Basique (5 jours)", pole: "Digital Learning & Conseil", duration: "5 jours", format: "Hybride" as const },
+  { title: "Formation Formateurs — Niveau Approfondi Suite Articulate 360", pole: "Digital Learning & Conseil", duration: "3 mois (1h/sem. Teams)", format: "Distanciel" as const },
+  { title: "Formation Chargés de Suivi en Ligne (5 jours)", pole: "Digital Learning & Conseil", duration: "5 jours", format: "Hybride" as const },
+  { title: "Installation & Configuration Moodle clé en main", pole: "Digital Learning & Conseil", duration: "Sur mesure", format: "Présentiel" as const },
+  { title: "Production Module E-Learning Simple", pole: "Digital Learning & Conseil", duration: "Sur mesure", format: "Distanciel" as const },
+  { title: "Production Module E-Learning Standard", pole: "Digital Learning & Conseil", duration: "Sur mesure", format: "Distanciel" as const },
+  { title: "Production Module E-Learning Avancé", pole: "Digital Learning & Conseil", duration: "Sur mesure", format: "Distanciel" as const },
+  { title: "Storyboard Transformation — contenu existant", pole: "Digital Learning & Conseil", duration: "Sur mesure", format: "Présentiel" as const },
+  { title: "Storyboard Création from Scratch", pole: "Digital Learning & Conseil", duration: "Sur mesure", format: "Présentiel" as const },
+  { title: "Santé communautaire, SMNI, WASH & nutrition", pole: "Santé Publique", duration: "4 jours", format: "Présentiel" as const },
+  { title: "Économie de la santé — coût-efficacité & faisabilité", pole: "Santé Publique", duration: "4 jours", format: "Présentiel" as const },
+  { title: "Évaluation des systèmes de santé", pole: "Santé Publique", duration: "5 jours", format: "Hybride" as const },
+  { title: "Vaccinologie appliquée & surveillance épidémiologique", pole: "Santé Publique", duration: "5 jours", format: "Présentiel" as const },
 ];
 ---
 
@@ -37,7 +47,7 @@ const formations = [
     <Container as="div">
       <SectionHeading
         title="Nos formations"
-        description="{{PLACEHOLDER}} L'inscription et le suivi pédagogique se font sur notre plateforme AFRIK'LEARN Academy."
+        description="Notre catalogue complet, à jour sur l'Academy. L'inscription et le suivi pédagogique se font sur notre plateforme AFRIK'LEARN Academy."
       />
 
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
