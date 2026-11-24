@@ -2,6 +2,7 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/sections/Hero.astro";
 import ExpertiseGrid from "@components/sections/ExpertiseGrid.astro";
+import VideoShowcase from "@components/sections/VideoShowcase.astro";
 import FormationCard from "@components/sections/FormationCard.astro";
 import PillarsGrid from "@components/sections/PillarsGrid.astro";
 import CTASection from "@components/sections/CTASection.astro";
@@ -57,6 +58,17 @@ const featuredFormations = [
   },
 ];
 
+// Section vidéos de démonstration — décision client (24/11/2026) : vidéos hébergées sur
+// YouTube (mode non répertorié possible), embed respectueux de la vie privée via le domaine
+// youtube-nocookie.com et chargement différé au clic (voir VideoShowcase.astro). Aucune
+// vidéo réelle fournie à ce jour — 3 emplacements vides en attente, jamais d'ID YouTube
+// inventé (CLAUDE.md §0.1). Voir docs/videos-demonstrations.md pour la marche à suivre.
+const demoVideos = [
+  { title: "Spot publicitaire — à venir" },
+  { title: "Démonstration vidéo 3D — à venir" },
+  { title: "Film institutionnel — à venir" },
+];
+
 const pillars = [
   { title: "Expertise terrain", description: "{{PLACEHOLDER}} Des formateurs issus du terrain, pas seulement de la théorie." },
   { title: "Approche panafricaine", description: "{{PLACEHOLDER}} Une compréhension fine des réalités institutionnelles africaines." },
@@ -79,6 +91,12 @@ const pillars = [
   />
 
   <ExpertiseGrid heading="Nos pôles d'expertise" items={expertiseItems} />
+
+  <VideoShowcase
+    heading="Nos réalisations en vidéo"
+    description="Spots publicitaires, films institutionnels et productions 3D — un aperçu de notre pôle Innovation Numérique."
+    videos={demoVideos}
+  />
 
   <section class="py-16 md:py-24">
     <Container as="div">
