@@ -4,28 +4,33 @@ import Container from "@components/layout/Container.astro";
 import SectionHeading from "@components/shared/SectionHeading.astro";
 import { breadcrumbJsonLd } from "@lib/seo";
 
-// {{PLACEHOLDER}} — à valider : Mme TANOU est Directrice Associée et Gérante (statutaire),
-// Dr KORANDJI est Directeur Associé. Ne pas inverser les titres (CLAUDE.md, journal des décisions).
+// Bios et histoire fournies par le client (24/11/2026) — voir docs/questionnaire-bios-cofondateurs.md.
+// Mme TANOU est Directrice Associée et Gérante (statutaire), Dr KORANDJI est Directeur
+// Associé. Ne pas inverser les titres (CLAUDE.md, journal des décisions).
 const founders = [
   {
     name: "Mme TANOU Lath You Rita Marcelle",
     role: "Directrice Associée et Gérante",
-    bio: "{{PLACEHOLDER_BIO}}",
+    bio: "Ingénieure pédagogique et spécialiste du Digital Learning, avec 7 ans d'expérience en digital learning et en communication digitale. Diplômée en communication et ressources humaines, certifiée en digital learning, gestion de projet digital et communication digitale, elle conçoit des parcours e-learning pour les entreprises et les établissements. Convaincue que l'Afrique mérite des outils de formation d'excellence, elle cofonde AFRIK'LEARN Consulting pour les rendre accessibles à tous.",
     linkedin: "{{PLACEHOLDER_LINKEDIN}}",
   },
   {
     name: "Dr Jean-Marc Bertrand KORANDJI",
     role: "Directeur Associé",
-    bio: "{{PLACEHOLDER_BIO}}",
+    bio: "Médecin, économiste de la santé, certifié Expert en Santé Publique, épidémiologiste et spécialiste de la promotion de la santé, également épidémiologiste de terrain pour la surveillance des maladies évitables par la vaccination (MEV). Face à l'insuffisance de la formation à distance et de la digitalisation de l'offre de formation, il cofonde AFRIK'LEARN Consulting pour aider entreprises et universités à diversifier leur offre grâce à des formules e-learning adaptées à leurs étudiants. Avec le développement de l'intelligence artificielle et l'évolution rapide du monde du travail, le cabinet associe également développement logiciel et applicatif pour faciliter le pilotage et le suivi des activités de formation.",
     linkedin: "www.linkedin.com/in/jean-marc-bertrand-korandji-b4236079",
   },
 ];
 
+// Valeurs proposées par Claude Code sur demande explicite du client ("propose-nous des
+// valeurs"), ancrées sur la double expertise réelle du cabinet (santé publique + digital
+// learning) — à valider par Mme TANOU et Dr KORANDJI avant publication définitive.
 const values = [
-  { title: "{{PLACEHOLDER_VALEUR_1}}", description: "{{PLACEHOLDER}}" },
-  { title: "{{PLACEHOLDER_VALEUR_2}}", description: "{{PLACEHOLDER}}" },
-  { title: "{{PLACEHOLDER_VALEUR_3}}", description: "{{PLACEHOLDER}}" },
-  { title: "{{PLACEHOLDER_VALEUR_4}}", description: "{{PLACEHOLDER}}" },
+  { title: "Terrain avant tout", description: "Nos solutions naissent au contact des réalités africaines, jamais depuis un bureau à distance." },
+  { title: "Rigueur scientifique", description: "Santé publique et ingénierie pédagogique exigent la même exactitude : nous ne transigeons jamais dessus." },
+  { title: "De A à Z", description: "Du diagnostic pédagogique au déploiement de la plateforme, nous accompagnons chaque projet jusqu'au bout." },
+  { title: "Hybrides par nature", description: "Santé publique et digital learning, expertise humaine et intelligence artificielle : notre force tient à ce que peu d'autres réunissent." },
+  { title: "Excellence accessible", description: "Les meilleurs outils de formation ne devraient pas être réservés à ceux qui peuvent se les offrir ailleurs qu'en Afrique." },
 ];
 ---
 
@@ -42,9 +47,13 @@ const values = [
     <Container as="div" class="max-w-3xl">
       <SectionHeading title="Notre histoire" align="left" />
       <p class="mt-6 text-al-ink-500">
-        {`{{PLACEHOLDER}}`} AFRIK'LEARN Consulting SARL est née de la conviction que l'Afrique francophone
-        dispose des talents nécessaires à sa propre transformation — à condition de leur donner accès
-        à une expertise technique rigoureuse et ancrée dans les réalités du continent.
+        AFRIK'LEARN Consulting est née à Abidjan en 2026 d'un constat simple : trop
+        d'établissements, d'entreprises et d'institutions africaines n'ont pas accès à des
+        formations numériques de qualité. Deux associés ont décidé d'y répondre en réunissant
+        leurs expertises : l'ingénierie pédagogique digitale et la santé publique. Notre
+        conviction est qu'une formation bien conçue, accompagnée de A à Z — de la conception
+        au déploiement d'un système de gestion de l'apprentissage adapté à chaque structure —
+        doit être accessible à tous.
       </p>
     </Container>
   </section>
@@ -70,7 +79,7 @@ const values = [
   <section class="py-16 md:py-24">
     <Container as="div">
       <SectionHeading title="Nos valeurs" />
-      <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
         {values.map((value) => (
           <div class="text-center">
             <h3 class="text-lg text-al-ink-900">{value.title}</h3>
