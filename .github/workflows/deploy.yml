@@ -32,23 +32,27 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Deploy via rsync over SSH
-        uses: easingthemes/ssh-deploy@v5
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.VPS_DEPLOY_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.VPS_HOST }}
-          REMOTE_USER: ${{ secrets.VPS_DEPLOY_USER }}
-          SOURCE: "dist/"
-          TARGET: "/var/www/afriklearn-vitrine/"
-          ARGS: "-rlgoDzvc --delete"
+      - name: Préparer la clé SSH
+        # Évite de dépendre d'une action tierce dont le tag de version peut
+        # disparaître (cause de l'échec initial : easingthemes/ssh-deploy@v5
+        # introuvable). ssh/rsync sont déjà présents sur le runner ubuntu-latest.
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
 
-      - name: Reload Nginx
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_DEPLOY_USER }}
-          key: ${{ secrets.VPS_DEPLOY_SSH_KEY }}
-          script: sudo systemctl reload nginx
+      - name: Déployer via rsync
+        run: |
+          rsync -rlgoDzvc --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+            dist/ "${{ secrets.VPS_DEPLOY_USER }}@${{ secrets.VPS_HOST }}:/var/www/afriklearn-vitrine/"
+
+      - name: Recharger Nginx
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
+            "${{ secrets.VPS_DEPLOY_USER }}@${{ secrets.VPS_HOST }}" \
+            "sudo systemctl reload nginx"
 
   # Secrets requis (GitHub → Settings → Secrets and variables → Actions) :
   #   VPS_HOST             — IP ou domaine du VPS
